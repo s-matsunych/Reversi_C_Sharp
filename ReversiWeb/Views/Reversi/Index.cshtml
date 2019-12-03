@@ -1,0 +1,78 @@
+﻿@using Prog_DotNET;
+@model ReversiModel;
+
+
+@{
+    ViewData["Title"] = "Reversi";
+
+}
+
+
+<h1>Reversi</h1>
+<h2>Index</h2>
+
+<a href="/Reversi">New game</a>
+
+
+<table class="field">
+   
+
+    @for (var i = 0; Model.Field._y > i; i++)
+    {
+
+        <tr>
+            @for (var j = 0; Model.Field._x > j; j++)
+            {
+               <td />
+               
+                var tile = Model.Field.tiles[i, j];
+                
+                <td>
+                   
+                            @if (tile.State == TileState.EMPTY)
+                            {
+                               
+                            <a href="/Reversi/Move?x=@i&y=@j">
+                                <img src='~/images/Empty.png' />
+                            </a>
+
+                            }
+
+                            @if (tile.State == TileState.BLACK)
+                            {
+                                @*<a href="/Reversi/Move?x= @j">*@
+                                    <img src='~/images/Black.bmp' />
+                                @*</a>*@
+                            }
+
+                            @if (tile.State == TileState.WHITE)
+                            {
+                                @*<a href="/Reversi/Move?x= @j">*@
+                                    <img src='~/images/Read.png' />
+                                @*</a>*@
+                            }
+                    </td>
+
+            }
+        </tr>
+    }
+
+
+</table>
+
+<br />
+<ol>
+    @foreach (var score in Model.Scores)
+    {
+        <li>@score.Name @score.Points</li>
+    }
+</ol>
+
+
+
+
+
+
+
+
+
